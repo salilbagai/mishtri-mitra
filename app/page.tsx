@@ -1,10 +1,10 @@
 "use client";
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, CSSProperties } from 'react';
 
 /**
  * mishTee Delivery Mitra - Mobile Dashboard
- * Production-ready single-file implementation.
+ * Optimized for Next.js 16.1.1 + TypeScript Strict Mode
  */
 export default function DeliveryDashboard() {
   const [isPulsing, setIsPulsing] = useState(true);
@@ -26,89 +26,91 @@ export default function DeliveryDashboard() {
     shadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)',
   };
 
-  // Styles defined with React.CSSProperties to prevent build-time Type errors
-  const containerStyle = {
-    maxWidth: '500px',
-    margin: '0 auto',
-    minHeight: '100vh',
-    backgroundColor: theme.bg,
-    fontFamily: '-apple-system, system-ui, sans-serif',
-    display: 'flex',
-    flexDirection: 'column' as const,
-    padding: '24px',
-    boxSizing: 'border-box' as const,
-  };
-
-  const headerStyle = {
-    display: 'flex',
-    flexDirection: 'column' as const,
-    alignItems: 'center',
-    marginTop: '20px',
-    marginBottom: '40px',
-  };
-
-  const titleStyle = {
-    fontSize: '24px',
-    fontWeight: '800',
-    color: theme.primary,
-    margin: '0 0 12px 0',
-    textAlign: 'center' as const,
-  };
-
-  const statusBadgeStyle = {
-    display: 'flex',
-    alignItems: 'center',
-    gap: '8px',
-    backgroundColor: '#DCFCE7',
-    padding: '6px 16px',
-    borderRadius: '20px',
-  };
-
-  const dotStyle = {
-    width: '10px',
-    height: '10px',
-    backgroundColor: theme.success,
-    borderRadius: '50%',
-    opacity: isPulsing ? 1 : 0.4,
-    transition: 'opacity 0.5s ease',
-  };
-
-  const cardStyle = {
-    backgroundColor: theme.white,
-    padding: '24px',
-    borderRadius: '16px',
-    boxShadow: theme.shadow,
-    border: '1px solid #F1F5F9',
-  };
-
-  const buttonStyle = {
-    marginTop: 'auto',
-    backgroundColor: theme.primary,
-    color: theme.white,
-    border: 'none',
-    borderRadius: '14px',
-    padding: '20px',
-    fontSize: '18px',
-    fontWeight: '700',
-    cursor: 'pointer',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    gap: '12px',
-    boxShadow: '0 10px 15px -3px rgba(255, 140, 0, 0.3)',
+  // Explicitly typing the styles object to satisfy TypeScript
+  const s: { [key: string]: CSSProperties } = {
+    wrapper: {
+      maxWidth: '500px',
+      margin: '0 auto',
+      minHeight: '100vh',
+      backgroundColor: theme.bg,
+      fontFamily: '-apple-system, system-ui, sans-serif',
+      display: 'flex',
+      flexDirection: 'column',
+      padding: '24px',
+      boxSizing: 'border-box',
+    },
+    header: {
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      marginTop: '20px',
+      marginBottom: '40px',
+    },
+    logo: {
+      width: '80px',
+      height: 'auto',
+      marginBottom: '16px',
+    },
+    title: {
+      fontSize: '24px',
+      fontWeight: '800',
+      color: theme.primary,
+      margin: '0 0 12px 0',
+      textAlign: 'center',
+    },
+    statusBadge: {
+      display: 'flex',
+      alignItems: 'center',
+      gap: '8px',
+      backgroundColor: '#DCFCE7',
+      padding: '6px 16px',
+      borderRadius: '20px',
+      border: '1px solid #BBF7D0',
+    },
+    dot: {
+      width: '10px',
+      height: '10px',
+      backgroundColor: theme.success,
+      borderRadius: '50%',
+      opacity: isPulsing ? 1 : 0.4,
+      transition: 'opacity 0.5s ease',
+    },
+    card: {
+      backgroundColor: theme.white,
+      padding: '24px',
+      borderRadius: '16px',
+      boxShadow: theme.shadow,
+      border: '1px solid #F1F5F9',
+    },
+    button: {
+      marginTop: 'auto',
+      backgroundColor: theme.primary,
+      color: theme.white,
+      border: 'none',
+      borderRadius: '14px',
+      padding: '20px',
+      fontSize: '18px',
+      fontWeight: '700',
+      cursor: 'pointer',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      gap: '12px',
+      boxShadow: '0 10px 15px -3px rgba(255, 140, 0, 0.3)',
+    }
   };
 
   return (
-    <div style={containerStyle}>
-      <header style={headerStyle}>
+    <div style={s.wrapper}>
+      <header style={s.header}>
         <img 
           src="https://raw.githubusercontent.com/sudhir-voleti/mishtee-magic/main/mishTee_logo.png" 
           alt="mishTee Logo" 
-          style={{ width: '80px', height: 'auto', marginBottom: '16px' }}
+          style={s.logo}
         />
-        <h1 style={titleStyle}>mishTee Delivery Mitra</h1>
-        <div style={statusBadgeStyle}>
-          <div style={dotStyle}></div>
+        <h1 style={s.title}>mishTee Delivery Mitra</h1>
+        <div style={s.statusBadge}>
+          <div style={s.dot}></div>
           <span style={{ fontSize: '14px', fontWeight: '600', color: '#166534' }}>
             Agent Online
           </span>
@@ -116,7 +118,7 @@ export default function DeliveryDashboard() {
       </header>
 
       <main>
-        <div style={cardStyle}>
+        <div style={s.card}>
           <div style={{ fontSize: '12px', fontWeight: '700', color: theme.textMuted, textTransform: 'uppercase', marginBottom: '8px' }}>
             Deliver to:
           </div>
@@ -131,8 +133,8 @@ export default function DeliveryDashboard() {
       </main>
 
       <button 
-        style={buttonStyle}
-        onClick={() => window.open('https://www.google.com/maps', '_blank')}
+        style={s.button}
+        onClick={() => window.open('https://maps.google.com', '_blank')}
       >
         <span>📍</span> Start Navigation
       </button>
