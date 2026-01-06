@@ -4,11 +4,12 @@ import React, { useState, useEffect, CSSProperties } from 'react';
 
 /**
  * mishTee Delivery Mitra - Mobile Dashboard
- * Final Build Fix: Using 'as const' for literal CSS types to pass Vercel/TypeScript checks.
+ * Fix: Explicitly casting style objects to CSSProperties to pass strict Type Checks.
  */
 export default function DeliveryDashboard() {
   const [isPulsing, setIsPulsing] = useState(true);
 
+  // Status pulse animation
   useEffect(() => {
     const interval = setInterval(() => {
       setIsPulsing((prev) => !prev);
@@ -26,6 +27,7 @@ export default function DeliveryDashboard() {
     shadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)',
   };
 
+  // The 'as CSSProperties' cast below is the fix for your build error
   const s = {
     wrapper: {
       maxWidth: '500px',
@@ -33,39 +35,39 @@ export default function DeliveryDashboard() {
       minHeight: '100vh',
       backgroundColor: theme.bg,
       fontFamily: '-apple-system, system-ui, sans-serif',
-      display: 'flex' as const,
-      flexDirection: 'column' as const,
+      display: 'flex',
+      flexDirection: 'column',
       padding: '24px',
-      boxSizing: 'border-box' as const,
-    },
+      boxSizing: 'border-box',
+    } as CSSProperties,
     header: {
-      display: 'flex' as const,
-      flexDirection: 'column' as const,
+      display: 'flex',
+      flexDirection: 'column',
       alignItems: 'center',
       marginTop: '20px',
       marginBottom: '40px',
-    },
+    } as CSSProperties,
     logo: {
       width: '80px',
       height: 'auto',
       marginBottom: '16px',
-    },
+    } as CSSProperties,
     title: {
       fontSize: '24px',
       fontWeight: '800',
       color: theme.primary,
       margin: '0 0 12px 0',
-      textAlign: 'center' as const,
-    },
+      textAlign: 'center',
+    } as CSSProperties,
     statusBadge: {
-      display: 'flex' as const,
+      display: 'flex',
       alignItems: 'center',
       gap: '8px',
       backgroundColor: '#DCFCE7',
       padding: '6px 16px',
       borderRadius: '20px',
       border: '1px solid #BBF7D0',
-    },
+    } as CSSProperties,
     dot: {
       width: '10px',
       height: '10px',
@@ -73,14 +75,14 @@ export default function DeliveryDashboard() {
       borderRadius: '50%',
       opacity: isPulsing ? 1 : 0.4,
       transition: 'opacity 0.5s ease',
-    },
+    } as CSSProperties,
     card: {
       backgroundColor: theme.white,
       padding: '24px',
       borderRadius: '16px',
       boxShadow: theme.shadow,
       border: '1px solid #F1F5F9',
-    },
+    } as CSSProperties,
     button: {
       marginTop: 'auto',
       backgroundColor: theme.primary,
@@ -91,12 +93,12 @@ export default function DeliveryDashboard() {
       fontSize: '18px',
       fontWeight: '700',
       cursor: 'pointer',
-      display: 'flex' as const,
+      display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
       gap: '12px',
       boxShadow: '0 10px 15px -3px rgba(255, 140, 0, 0.3)',
-    }
+    } as CSSProperties
   };
 
   return (
@@ -133,7 +135,7 @@ export default function DeliveryDashboard() {
 
       <button 
         style={s.button}
-        onClick={() => window.open('https://www.google.com/maps', '_blank')}
+        onClick={() => window.open('https://www.google.com/maps/dir/?api=1&destination=Arjun+Mehta+HSR+Layout', '_blank')}
       >
         <span>📍</span> Start Navigation
       </button>
