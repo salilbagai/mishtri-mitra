@@ -4,7 +4,7 @@ import React, { useState, useEffect, CSSProperties } from 'react';
 
 /**
  * mishTee Delivery Mitra - Mobile Dashboard
- * Optimized for Next.js 16.1.1 + TypeScript Strict Mode
+ * Final Build Fix: Using 'as const' for literal CSS types to pass Vercel/TypeScript checks.
  */
 export default function DeliveryDashboard() {
   const [isPulsing, setIsPulsing] = useState(true);
@@ -26,22 +26,21 @@ export default function DeliveryDashboard() {
     shadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)',
   };
 
-  // Explicitly typing the styles object to satisfy TypeScript
-  const s: { [key: string]: CSSProperties } = {
+  const s = {
     wrapper: {
       maxWidth: '500px',
       margin: '0 auto',
       minHeight: '100vh',
       backgroundColor: theme.bg,
       fontFamily: '-apple-system, system-ui, sans-serif',
-      display: 'flex',
-      flexDirection: 'column',
+      display: 'flex' as const,
+      flexDirection: 'column' as const,
       padding: '24px',
-      boxSizing: 'border-box',
+      boxSizing: 'border-box' as const,
     },
     header: {
-      display: 'flex',
-      flexDirection: 'column',
+      display: 'flex' as const,
+      flexDirection: 'column' as const,
       alignItems: 'center',
       marginTop: '20px',
       marginBottom: '40px',
@@ -56,10 +55,10 @@ export default function DeliveryDashboard() {
       fontWeight: '800',
       color: theme.primary,
       margin: '0 0 12px 0',
-      textAlign: 'center',
+      textAlign: 'center' as const,
     },
     statusBadge: {
-      display: 'flex',
+      display: 'flex' as const,
       alignItems: 'center',
       gap: '8px',
       backgroundColor: '#DCFCE7',
@@ -92,7 +91,7 @@ export default function DeliveryDashboard() {
       fontSize: '18px',
       fontWeight: '700',
       cursor: 'pointer',
-      display: 'flex',
+      display: 'flex' as const,
       alignItems: 'center',
       justifyContent: 'center',
       gap: '12px',
@@ -134,7 +133,7 @@ export default function DeliveryDashboard() {
 
       <button 
         style={s.button}
-        onClick={() => window.open('https://maps.google.com', '_blank')}
+        onClick={() => window.open('https://www.google.com/maps', '_blank')}
       >
         <span>📍</span> Start Navigation
       </button>
